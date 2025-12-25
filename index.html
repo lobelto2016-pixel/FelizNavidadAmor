@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para mi princesa ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Poppins:wght@300&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(to bottom, #0f2027, #203a43, #2c5364);
+            font-family: 'Poppins', sans-serif;
+            overflow: hidden;
+            flex-direction: column;
+        }
+
+        .container {
+            position: relative;
+            z-index: 10;
+        }
+
+        .envelope-wrapper {
+            position: relative;
+            background: #a93226;
+            width: 300px;
+            height: 200px;
+            margin: 0 auto;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+            box-shadow: 0 15px 25px rgba(0,0,0,0.5);
+        }
+
+        .flap {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 0;
+            border-left: 150px solid transparent;
+            border-right: 150px solid transparent;
+            border-top: 110px solid #c0392b; 
+            transform-origin: top;
+            transition: transform 0.6s ease-in-out, z-index 0.6s;
+            z-index: 5; 
+        }
+
+        .wax-seal {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 50px;
+            height: 50px;
+            background: #f3bf12;
+            border-radius: 50%;
+            border: 3px solid #000000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3), inset 0 2px 5px rgba(0,0,0,0.2);
+            z-index: 6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            color: #922b21;
+            pointer-events: none;
+            transition: opacity 0.4s;
+        }
+        
+        .wax-seal::after {
+            content: '★';
+        }
+
+        .envelope-wrapper::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 0;
+            border-left: 150px solid transparent;
+            border-right: 150px solid transparent;
+            border-bottom: 110px solid #c0392b;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+            z-index: 4;
+        }
+
+        .envelope-wrapper::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 0;
+            border-left: 150px solid #922b21; 
+            border-right: 150px solid #e74c3c; 
+            border-top: 100px solid transparent;
+            border-bottom: 100px solid transparent;
+            border-radius: 10px;
+            z-index: 3;
+        }
+
+        .letter {
+            position: absolute;
+            bottom: 0;
+            left: 20px; 
+            width: 260px;
+            height: 180px;
+            background: #fff8e1;
+            padding: 20px;
+            box-sizing: border-box;
+            border-radius: 5px;
+            transition: all 0.8s ease-in-out;
+            z-index: 2; 
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .letter h2 {
+            font-family: 'Dancing Script', cursive;
+            color: #c0392b;
+            margin: 0 0 10px 0;
+            font-size: 24px;
+            text-align: center;
+        }
+
+        .letter p {
+            font-size: 14px;
+            color: #555;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .text-content {
+            height: 100%;
+            overflow-y: auto;
+        }
+
+        .btn-open {
+            margin-top: 40px;
+            padding: 12px 30px;
+            background: #2ecc71;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(46, 204, 113, 0.4);
+            z-index: 20;
+            position: relative;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .container.open .flap {
+            transform: rotateX(180deg);
+            z-index: 1;
+        }
+        
+        .container.open .wax-seal {
+            opacity: 0;
+        }
+
+        .container.open .letter {
+            bottom: 60px;
+            height: 350px;
+            z-index: 10;
+        }
+
+        .container.open .btn-open {
+            display: none;
+        }
+
+        .falling-item {
+            position: absolute;
+            top: -30px;
+            color: white;
+            font-size: 1em;
+            opacity: 0.8;
+            pointer-events: none;
+            animation: fall linear forwards;
+        }
+
+        @keyframes fall {
+            to { transform: translateY(105vh) rotate(360deg); }
+        }
+        
+        .credit { position: fixed; bottom: 10px; color: rgba(255,255,255,0.3); font-size: 10px; }
+    </style>
+</head>
+<body>
+
+    <div class="container" id="envelope-container">
+        <div class="envelope-wrapper">
+            <div class="flap"></div>
+            <div class="wax-seal"></div> <div class="letter">
+                <div class="text-content">
+                    <h2>Para mi niña hermosa 💌</h2>
+                    <p id="mensaje-personalizado">
+                        ¡Feliz Navidad! 🎄✨<br><br>
+                        
+                        Espero que sea de tu agrado.
+                        <br><br>
+                        Ojalá la estes pasando muy bien con tu familia, se lo gran mujer que eres y sé que serás una buena enfermera próximamente ☝️<br>Te conozco aproximadamente desde agosto de 2024 sino me equivoco, recuerdo demasiadas cosas de ti. Me encanta hacerte cartas, regalos, páginas web, lo que sea con tal de tenerte contenta todos los días 🩵.<br>Desearía poder estar contigo y pasar juntos estas fechas pero nacimos en distintos lugares jajaja así que tendrá que ser el siguiente año creo yo.<br>Te amo muchote princesa 💞
+                        <br><br>
+                        ¿Te espero debajo de mi árbol, digo no? 😈<br>
+                        Serás mi regalo muack 💏
+                    </p>
+                </div>
+            </div>
+        </div>
+        <button class="btn-open" onclick="abrirCarta()">Toca para abrir tu carta amor 🎁</button>
+    </div>
+    
+    <div class="credit">VEN PARA DARTE MUERDAGO GRRR ❤️</div>
+
+    <script>
+        // Array con los diferentes símbolos que caerán
+        const fallingSymbols = ['❄️', '⛄', '🌿', '🎁'];
+
+        function createFallingItem() {
+            const item = document.createElement('div');
+            item.classList.add('falling-item');
+            // Selecciona un símbolo al azar del array
+            item.textContent = fallingSymbols[Math.floor(Math.random() * fallingSymbols.length)];
+            
+            item.style.left = Math.random() * 100 + 'vw';
+            item.style.animationDuration = Math.random() * 3 + 3 + 's'; // Entre 3 y 6 segundos
+            item.style.fontSize = Math.random() * 15 + 15 + 'px'; // Tamaño variable
+            
+            document.body.appendChild(item);
+            setTimeout(() => { item.remove(); }, 6000);
+        }
+        
+        // Generar elementos variados
+        setInterval(createFallingItem, 300);
+
+        function abrirCarta() {
+            const container = document.getElementById('envelope-container');
+            const music = document.getElementById('bg-music');
+            container.classList.add('open');
+            music.volume = 0.5;
+            music.play().catch(e => console.log("Interacción requerida para audio"));
+        }
+    </script>
+</body>
+</html>
